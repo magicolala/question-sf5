@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -14,7 +13,7 @@ class QuestionController extends AbstractController
      */
     public function homepage()
     {
-        return $this->render('questions/homepage.html.twig');
+        return $this->render('question/homepage.html.twig');
     }
 
     /**
