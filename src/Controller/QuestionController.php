@@ -4,26 +4,34 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-class QuestionController
+class QuestionController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="app_homepage")
      */
     public function homepage()
     {
-        return new Response('My first page');
+        return $this->render('questions/homepage.html.twig');
     }
 
     /**
-     * @Route("/question/{slug}")
+     * @Route("/questions/{slug}", name="app_questions_show")
      *
      * @param [type] $slug
      * @return void
      */
     public function show($slug)
     {
-        return new Response('Future page to show a question');
+        $answers = ['Reponse 1', 'Reponse 2', 'Reponse 3'];
+
+        dump($this);
+
+        return $this->render('questions/show.html.twig', [
+            'question' => ucwords(str_replace('-', ' ', $slug)),
+            'answers' => $answers
+        ]);
     }
 }
