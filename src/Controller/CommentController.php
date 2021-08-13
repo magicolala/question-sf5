@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CommentController extends AbstractController
 {
     /**
-     * @Route("/comments/{id}/vote/{direction}")
+     * @Route("/comments/{id<\d+>}/vote/{direction<up|down>}", name="app_comment_vote" methods="POST")
      *
      * @return void
      */
