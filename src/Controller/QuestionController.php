@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -22,15 +23,21 @@ class QuestionController extends AbstractController
      * @param [type] $slug
      * @return void
      */
-    public function show($slug)
+    public function show($slug, MarkdownParserInterface $markdownParser)
     {
-        $answers = ['Reponse 1', 'Reponse 2', 'Reponse 3'];
+        $answers = [
+            'Make sure your cat is sitting `purrrfectly` still 🤣',
+            'Honestly, I like furry shoes better than MY cat',
+            'Maybe... try saying the spell backwards?',
+        ];
 
-        dump($this);
+        $questionText = "I've been turned into a cat, any thoughts on how to turn back? While I'm **adorable**, I don't really care for cat food.";
+        $parsedQuestionText = $markdownParser->transformMarkdown($questionText);
 
         return $this->render('questions/show.html.twig', [
             'question' => ucwords(str_replace('-', ' ', $slug)),
-            'answers' => $answers
+            'answers' => $answers,
+            'questionText' => $parsedQuestionText
         ]);
     }
 }
