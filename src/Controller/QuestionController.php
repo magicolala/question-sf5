@@ -13,7 +13,7 @@ class QuestionController extends AbstractController
      */
     public function homepage()
     {
-        return $this->render('question/homepage.html.twig');
+        return $this->render('questions/homepage.html.twig');
     }
 
     /**
